@@ -26,7 +26,7 @@ function myHeader()
 function myMenu()
 {
 
-    $dir = "/PHP_A1/CrewStreamers/";
+    $dir = "/CrewStreamers/";
     $menu = <<<HERE
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid p-3 mb-2 bg-dark text-white">
@@ -37,28 +37,24 @@ function myMenu()
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{$dir}index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{$dir}index.php">🏠Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{$dir}apartados_navbar/desafio1.php">Desafio 1</a>
+                    <a class="nav-link" href="{$dir}apartados_navbar/desafio1.php">🎯Desafio 1</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{$dir}apartados_navbar/desafio2.php">Desafio 2</a>
+                    <a class="nav-link" href="{$dir}apartados_navbar/desafio2.php">🔥Desafio 2</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{$dir}apartados_navbar/desafio3.php">Desafio 3</a>
+                    <a class="nav-link" href="{$dir}apartados_navbar/desafio3.php">⚡Desafio 3</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{$dir}apartados_navbar/desafio4.php">Desafio 4</a>
+                    <a class="nav-link" href="{$dir}apartados_navbar/desafio4.php">🏆Desafio 4</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{$dir}apartados_navbar/desafio5.php">Desafio 5</a>
+                    <a class="nav-link" href="{$dir}apartados_navbar/desafio5.php">💎Desafio 5</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
                 </div>
             </div>
             </nav>

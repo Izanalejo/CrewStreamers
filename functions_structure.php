@@ -16,7 +16,7 @@ function myHeader()
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Impresiones de Arrays</title>
+        <title>Proyecto stream</title>
     </head>
     CABECERA;
     echo $head;
@@ -27,6 +27,17 @@ function myMenu()
 {
 
     $dir = "/CrewStreamers/";
+    $printLogout = "";
+    $printCloseNav = "";
+
+     if(isset($_SESSION['username'])) {
+        $printLogout = <<<HERELOGOUT
+            <form action="apartados_navbar/logout.php" method="post">
+                <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+            </form>
+        HERELOGOUT;
+    }
+
     $menu = <<<HERE
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid p-3 mb-2 bg-dark text-white">
@@ -54,13 +65,14 @@ function myMenu()
                     <li class="nav-item">
                     <a class="nav-link" href="{$dir}apartados_navbar/desafio5.php">💎Desafio 5</a>
                     </li>
+                    $printLogout;
                 </ul>
-                </div>
             </div>
-            </nav>
-            HERE;
+                </div>
+        </nav>
+    HERE;
+
     echo $menu;
-    echo '<hr>';
 }
 
 //------------------------------------------------------------------------------------------------------------
@@ -85,6 +97,26 @@ function myFooter()
     // 4. Mostrar el resultado
     echo $footerHTML;
 }
+
+//------------------------------------------------------------------------------------------------------------
+function myHeaderHome()
+{
+    $menuHome = <<<HERE
+    <html lang="es">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pàgina Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <style>
+        body{ background-color: #07222dff; color: white; }
+    </style>
+    </head> 
+HERE;
+    echo $menuHome;
+}
+
 
 
 // Print Line. Appends an return at the end

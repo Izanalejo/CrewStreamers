@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
     session_regenerate_id(true);
 
     // Guardamos la cookie de última visita (valor: timestamp), duración: 30 días
-    setcookie('last_visit', time(), time() + 30*24*60*60, '/');
+    setcookie('last_visit', time(), time() + 30 * 24 * 60 * 60, '/');
 
     // Redirigimos para evitar reenvío del formulario al recargar
     header('Location: ' . $_SERVER['PHP_SELF']);
@@ -49,53 +49,42 @@ if (isset($_SESSION['inicio_sesion'])) {
 ?>
 
 
-<?php myHeader(); myMenu(); ?>
+<?php myMenu();
+myHeaderHome(); ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pàgina Home</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body{ background-color: #07222dff; color: white; }
-  </style>
-</head>
+
 <body>
-    <div class="container">
-    <?php if (!isset($_SESSION['username'])): ?>
-        <!-- Formulario para elegir username -->
-          <h1 style="text-align: center;">Escoge tu username para iniciar sesión!</h1>
-        <div class="d-flex justify-content-center align-items-center vh-100">
-           
-            <div class="p-4 border rounded shadow-sm" style="max-width: 450px; width:100%;">
-                <form method="POST" novalidate>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username gamer</label>
-                    <input type="text" name="username" class="form-control" id="username" maxlength="32" required>
-                    <div class="form-text">Este username será tu identificador</div>
+    <div class="container" style="background-color: #07222dff;">
+        <?php if (!isset($_SESSION['username'])): ?>
+            <!-- 1a vez que entramos: Formulario para elegir username -->
+            <h1 style="text-align: center;">Escoge tu username para iniciar sesión!</h1>
+            <div class="d-flex justify-content-center align-items-center vh-100">
+                <div class="p-4 border rounded shadow-sm" style="max-width: 450px; width:100%;">
+                    <form method="POST" novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username gamer</label>
+                            <input type="text" name="username" class="form-control" id="username" maxlength="32" required>
+                            <div class="form-text">Este username será tu identificador</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Acceder</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Acceder</button>
-                </form>
             </div>
-        </div>
-    <?php else: ?>
-        <!-- Bienvenida cuando ya tenemos username -->
-        <div class="py-5">
-            <h2>¡Bienvenido de nuevo, <?php echo $_SESSION['username']; ?>! 🎮</h2>
-            <div class="info-box mt-3">
-                <p><strong>Número de visitas en esta sesión:</strong> <?php echo $visitas; ?></p>
-                <p><strong>Tiempo de sesión activa:</strong> <?php echo $tiempoSesion; ?></p>
+        <?php else: ?>
+            <!-- Bienvenida cuando ya tenemos username -->
+            <div class="py-5">
+                <h2>¡Bienvenido de nuevo, <?php echo $_SESSION['username']; ?>! 🎮</h2>
+                <div class="info-box mt-3">
+                    <p><strong>Número de visitas en esta sesión:</strong> <?php echo $visitas; ?></p>
+                    <p><strong>Tiempo de sesión activa:</strong> <?php echo $tiempoSesion; ?></p>
+                </div>
             </div>
-        </div>
-        <form action="apartados_navbar/logout.php" method="post">
-        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-        </form>
-    <?php endif; ?>
+            
+        <?php endif; ?>
     </div>
 
 
-    
+
 </body>
+
 </html>

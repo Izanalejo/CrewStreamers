@@ -6,5 +6,5 @@ session_destroy();
 
 setcookie('last_visit', '', time() - 3600, '/');
 
-header("Location: ../index.php");
+header("Location: ../home.php");
 exit;

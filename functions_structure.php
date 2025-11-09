@@ -28,14 +28,15 @@ function myMenu()
 
     $dir = "/CrewStreamers/";
     $printLogout = "";
-    $printCloseNav = "";
 
      if(isset($_SESSION['username'])) {
         $printLogout = <<<HERELOGOUT
-            <form action="apartados_navbar/logout.php" method="post">
-                <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+        <li class="nav-item">
+            <form action="apartados_navbar/logout.php" method="post" class="d-flex">
+                <button type="submit" class="btn btn-danger ms-2">Cerrar sesión</button>
             </form>
-        HERELOGOUT;
+        </li>
+    HERELOGOUT;
     }
 
     $menu = <<<HERE
@@ -48,7 +49,7 @@ function myMenu()
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{$dir}index.php">🏠Home</a>
+                    <a class="nav-link active" aria-current="page" href="{$dir}home.php">🏠Home</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="{$dir}apartados_navbar/desafio1.php">🎯Desafio 1</a>
@@ -65,7 +66,7 @@ function myMenu()
                     <li class="nav-item">
                     <a class="nav-link" href="{$dir}apartados_navbar/desafio5.php">💎Desafio 5</a>
                     </li>
-                    $printLogout;
+                    $printLogout
                 </ul>
             </div>
                 </div>
@@ -83,14 +84,13 @@ function myFooter()
 
     // 2. Obtener fecha y hora actuales
     $fechaActual = date("d-m-Y");
-    $horaActual = date("H:i:s");
+    $horaActual = date("H:i");
 
     // 3. Crear el HTML
     $footerHTML = <<<MYFOOTER
         <footer style="text-align: center; margin-top: 2em; font-family: sans-serif;">
             <hr>
-            <p>&copy; Provençana</p>
-            <p>La fecha es: {$fechaActual} y la hora es: {$horaActual}</p>
+            <p>Izan Alejo Pérez i Joel Paez Pons | {$fechaActual},     {$horaActual}</p>
         </footer>
     MYFOOTER;
 
@@ -110,7 +110,17 @@ function myHeaderHome()
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <style>
-        body{ background-color: #07222dff; color: white; }
+        body{ 
+            background-color: #07222dff; color: white; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+        }
+        footer {
+            text-align: center;
+            padding: 9rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
     </style>
     </head> 
 HERE;

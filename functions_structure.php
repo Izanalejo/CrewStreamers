@@ -21,7 +21,34 @@ function myHeader()
     CABECERA;
     echo $head;
 }
+//------------------------------------------------------------------------------------------------------------
+function myHeaderHome()
+{
+    $menuHome = <<<HERE
+    <html lang="es">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pàgina Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <style>
+        body{ 
+            background-color: #07222dff; color: white; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 
+        }
+        footer {
+            text-align: center;
+            padding: 9rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+    </style>
+    </head> 
+HERE;
+    echo $menuHome;
+}
 //------------------------------------------------------------------------------------------------------------
 function myMenu()
 {
@@ -41,9 +68,11 @@ function myMenu()
 
     $menu = <<<HERE
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid p-3 mb-2 bg-dark text-white">
-                <a class="navbar-brand" href="{$dir}index.php">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid py-1 px-3 text-white">
+            <a class="navbar-brand" href="{$dir}home.php">
+                <img style="height: 45px; margin-right: 35px;width: auto; object-fit: contain;" src="{$dir}images/logo/logo.png" alt="logo" class="logo-navbar">
+            </a>                
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -98,34 +127,7 @@ function myFooter()
     echo $footerHTML;
 }
 
-//------------------------------------------------------------------------------------------------------------
-function myHeaderHome()
-{
-    $menuHome = <<<HERE
-    <html lang="es">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Pàgina Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <style>
-        body{ 
-            background-color: #07222dff; color: white; 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 
-        }
-        footer {
-            text-align: center;
-            padding: 9rem;
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-        }
-    </style>
-    </head> 
-HERE;
-    echo $menuHome;
-}
 
 
 

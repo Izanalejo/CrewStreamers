@@ -56,7 +56,7 @@ function myMenu()
     $dir = "/CrewStreamers/";
     $printLogout = "";
 
-     if(isset($_SESSION['username'])) {
+    if (isset($_SESSION['username'])) {
         $printLogout = <<<HERELOGOUT
         <li class="nav-item">
             <form action="apartados_navbar/logout.php" method="post" class="d-flex">
@@ -126,15 +126,58 @@ function myFooter()
     // 4. Mostrar el resultado
     echo $footerHTML;
 }
-
-
-
-
-
 // Print Line. Appends an return at the end
 //------------------------------------------------------------------------------------------------------------
 function println($something): void
 {
     echo $something . '<br>';
 }
+
+//Leer JSON
+function leerJSON($archivo)
+{
+    if (file_exists($archivo)) { //Verifica si el archivo existe
+        $contenido = file_get_contents($archivo);
+        return json_decode($contenido, true);
+    } else {
+        return [];
+    }
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+/// Funciones de Home.php
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+function imprimirFormularioLogin()
+{
+    $formulario = <<<FORMULARIO
+
+    <div class="login-section">
+                <h1>Escoge tu username para iniciar sesión!</h1>
+                <div class="form-wrapper">
+                    <form method="POST" novalidate>
+                        <div class="form-group">
+                            <label for="username">Username gamer</label>
+                            <input type="text" name="username" id="username" maxlength="32" required placeholder="Ingresa tu username">
+                            <small>Este username será tu identificador</small>
+                        </div>
+                        <button type="submit">🎮 Acceder</button>
+                    </form>
+                </div>
+
+            </div>
+
+    FORMULARIO;
+    echo $formulario;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+/// Funciones de desafio1.php
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 ?>

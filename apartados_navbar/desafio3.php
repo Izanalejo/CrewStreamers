@@ -10,17 +10,6 @@ function guardarJSON($archivo, $datos)
     $json = json_encode($datos, JSON_PRETTY_PRINT);
     file_put_contents($archivo, $json);
 }
-//Lee el archivo json y lo convierte en un array
-function leerJSON($archivo)
-{
-    if (file_exists($archivo)) { //Verifica si el archivo existe
-        $contenido = file_get_contents($archivo);
-        return json_decode($contenido, true);
-    } else {
-        return [];
-    }
-}
-
 
 $archivoRoster = '../data/roster_completo.json';
 
@@ -258,6 +247,7 @@ if ($rokkie !== null) {
 }
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -271,13 +261,9 @@ if ($rokkie !== null) {
 </head>
 
 <body>
-
     <form method="$_POST">
         <button name="nuevoRoster">Generar Nuevo Roster</button>
     </form>
-
-
-
 </body>
 
 </html>

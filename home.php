@@ -56,24 +56,12 @@ myMenu(); ?>
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <div class="main-container">
-        <?php if (!isset($_SESSION['username'])): ?>
-            <!-- Primera vez: Formulario para elegir username -->
-            <div class="login-section">
-                <h1>Escoge tu username para iniciar sesión!</h1>
-                <div class="form-wrapper">
-                    <form method="POST" novalidate>
-                        <div class="form-group">
-                            <label for="username">Username gamer</label>
-                            <input type="text" name="username" id="username" maxlength="32" required placeholder="Ingresa tu username">
-                            <small>Este username será tu identificador</small>
-                        </div>
-                        <button type="submit">🎮 Acceder</button>
-                    </form>
-                </div>
 
-            </div>
-        <?php else: ?>
+    <div class="main-container">
+        <?php if (!isset($_SESSION['username'])): 
+            //Primera vez: Formulario para elegir username
+           imprimirFormularioLogin(); 
+            else: ?>
             <!-- Bienvenida cuando ya tenemos username -->
             <div class="welcome-section">
                 <h2>¡Bienvenido de nuevo, <?php echo $_SESSION['username']; ?>! 🎮</h2>

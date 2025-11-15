@@ -3,8 +3,6 @@ require_once '../functions_structure.php';
 myHeader();
 myMenu();
 
-
-//Funcion para convertir los datos a tipo JSON
 function guardarJSON($archivo, $datos)
 {
     $json = json_encode($datos, JSON_PRETTY_PRINT);
@@ -13,22 +11,19 @@ function guardarJSON($archivo, $datos)
 
 $archivoRoster = '../data/roster_completo.json';
 
-//genera un roster si no esat creado al clicar el boton
+// Solo genera un roster si se pulsa el botón
 if (isset($_POST['nuevo_roster'])) {
     $roster = generarStreamers();
     guardarJSON($archivoRoster, $roster);
-    header("Location: desafio3.php"); //Se redirije al mismo archivo 
+    header("Location: desafio3.php");
     exit;
-} else if (!file_exists($archivoRoster)) {
-    $roster = generarStreamers();
-    guardarJSON($archivoRoster, $roster);
-} else {
+} else if (file_exists($archivoRoster)) {
     $roster = leerJSON($archivoRoster);
+} else {
+    $roster = []; // vacío hasta que se pulse el botón
 }
 
-
-
-//Funcion para crear a los streamers
+// --- FUNCIONES ---
 function generarStreamers($cantidad = 20)
 {
     $username = [
@@ -115,12 +110,10 @@ function generarStreamers($cantidad = 20)
     return $streamer;
 }
 
-//Dividir los equipos si es par o impar por los followers
 function dividirEquipos($roster)
 {
     $teamChaos = [];
     $teamOrder = [];
-
     for ($i = 0; $i < count($roster); $i++) {
         if ($i % 2 === 0) {
             $teamChaos[] = $roster[$i];
@@ -128,13 +121,11 @@ function dividirEquipos($roster)
             $teamOrder[] = $roster[$i];
         }
     }
-
     return ['chaos' => $teamChaos, 'order' => $teamOrder];
 }
 
 function mostrarEquipo($equipo, $nombreEquipo, $color)
 {
-
     echo "<h2 style='color:$color;'>$nombreEquipo</h2>";
     echo "<div class='equipo-container'>";
     foreach ($equipo as $s) {
@@ -149,73 +140,36 @@ function mostrarEquipo($equipo, $nombreEquipo, $color)
     echo "</div>";
 }
 
-$equipo = dividirEquipos($roster);
-$teamChaos = $equipo['chaos'];
-$teamOrder = $equipo['order'];
-
-mostrarEquipo($teamChaos, "Team Chaos 🔴", "red");
-mostrarEquipo($teamOrder, "Team Order 🔵", "blue");
-
-
 function totalFollowers($equipo)
 {
     $total = 0;
-    //Recorremos cada streamer para sumar los followers
     foreach ($equipo as $streamer) {
         $total += $streamer['followers'];
     }
     return $total;
 }
 
-$totalChaos = totalFollowers($teamChaos);
-$totalOrder = totalFollowers($teamOrder);
-
-echo "<p>Total followers Team Chaos 🔴: $totalChaos</p>";
-echo "<p>Total followers Team Order 🔵: $totalOrder</p>";
-
 function fusionarArray($equipo1, $equipo2)
 {
-    return array_merge($equipo1, $equipo2); //Combinamos con array_merge los dos arrays en uno solo
+    return array_merge($equipo1, $equipo2);
 }
-
-$rosterFusionado = fusionarArray($teamChaos, $teamOrder);
 
 function mvp($rosterFusionado)
 {
-
     $mayorCantidadFollowers = 0;
-    $mvp = "";
-    //Recorreremos todos los streamers 
+    $mvp = null;
     foreach ($rosterFusionado as $streamer) {
-        if ($streamer['followers'] > $mayorCantidadFollowers) { //Comparamos el numero de followers
+        if ($streamer['followers'] > $mayorCantidadFollowers) {
             $mayorCantidadFollowers = $streamer['followers'];
             $mvp = $streamer;
-        }else if($streamer['followers'] === $mayorCantidadFollowers){
-            $mvp[] = $streamer;
         }
     }
     return $mvp;
 }
 
-$mvp = mvp($rosterFusionado);
-
-if ($mvp !== null) {
-    echo "<h2>MVP del torneo 🏆</h2>";
-    echo "<div class='streamer-card'>
-            <img src='../images/streamers/{$mvp['avatar']}' alt='{$mvp['username']}' />
-            <h3>{$mvp['username']}</h3>
-            <p>{$mvp['nombre_real']}</p>
-            <p>👥 {$mvp['followers']} followers</p>
-            <p>🎮 {$mvp['juego_favorito']}</p>
-          </div>";
-} else {
-    echo "<p>No se pudo determinar el MVP.</p>";
-}
-
 function rokkie($rosterFusionado)
 {
-    if (empty($rosterFusionado)) return null; // por si el array está vacío
-
+    if (empty($rosterFusionado)) return null;
     $rokkie = $rosterFusionado[0];
     $menorCantidadFollowers = $rokkie['followers'];
 
@@ -223,31 +177,54 @@ function rokkie($rosterFusionado)
         if ($streamer['followers'] < $menorCantidadFollowers) {
             $menorCantidadFollowers = $streamer['followers'];
             $rokkie = $streamer;
-        }else if($streamer['followers'] === $menorCantidadFollowers){
-            $rokkie[] = $streamer;
         }
     }
-
     return $rokkie;
 }
 
-$rokkie = rokkie($rosterFusionado);
+// --- BLOQUE PRINCIPAL ---
+if (!empty($roster)) {
+    $equipo = dividirEquipos($roster);
+    $teamChaos = $equipo['chaos'];
+    $teamOrder = $equipo['order'];
 
-if ($rokkie !== null) {
-    echo "<h2>El rokkie del torneo 🏆</h2>";
-    echo "<div class='streamer-card'>
-            <img src='../images/streamers/{$rokkie['avatar']}' alt='{$rokkie['username']}' />
-            <h3>{$rokkie['username']}</h3>
-            <p>{$rokkie['nombre_real']}</p>
-            <p>👥 {$rokkie['followers']} followers</p>
-            <p>🎮 {$rokkie['juego_favorito']}</p>
-          </div>";
+    mostrarEquipo($teamChaos, "Team Chaos 🔴", "red");
+    mostrarEquipo($teamOrder, "Team Order 🔵", "blue");
+
+    $totalChaos = totalFollowers($teamChaos);
+    $totalOrder = totalFollowers($teamOrder);
+
+    echo "<p>Total followers Team Chaos 🔴: $totalChaos</p>";
+    echo "<p>Total followers Team Order 🔵: $totalOrder</p>";
+
+    $rosterFusionado = fusionarArray($teamChaos, $teamOrder);
+
+    $mvp = mvp($rosterFusionado);
+    if ($mvp !== null) {
+        echo "<h2>MVP del torneo 🏆</h2>";
+        echo "<div class='streamer-card'>
+                <img src='../images/streamers/{$mvp['avatar']}' alt='{$mvp['username']}' />
+                <h3>{$mvp['username']}</h3>
+                <p>{$mvp['nombre_real']}</p>
+                <p>👥 {$mvp['followers']} followers</p>
+                <p>🎮 {$mvp['juego_favorito']}</p>
+              </div>";
+    }
+
+    $rokkie = rokkie($rosterFusionado);
+    if ($rokkie !== null) {
+        echo "<h2>El rokkie del torneo 🏆</h2>";
+        echo "<div class='streamer-card'>
+                <img src='../images/streamers/{$rokkie['avatar']}' alt='{$rokkie['username']}' />
+                <h3>{$rokkie['username']}</h3>
+                <p>{$rokkie['nombre_real']}</p>
+                <p>👥 {$rokkie['followers']} followers</p>
+                <p>🎮 {$rokkie['juego_favorito']}</p>
+              </div>";
+    }
 } else {
-    echo "<p>No se pudo determinar el rokkie.</p>";
+    echo "<p>No hay roster creado todavía. Pulsa el botón para generarlo.</p>";
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -261,8 +238,8 @@ if ($rokkie !== null) {
 </head>
 
 <body>
-    <form method="$_POST">
-        <button name="nuevoRoster">Generar Nuevo Roster</button>
+    <form method="post">
+        <button type="submit" name="nuevo_roster">Generar Nuevo Roster</button>
     </form>
 </body>
 

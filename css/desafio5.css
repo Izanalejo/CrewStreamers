@@ -1,0 +1,84 @@
+body {
+    background: linear-gradient(135deg, #0a2e38, #1a4a5a);
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Bloques generales */
+.juegos, .sponsors, .streamers, .tabla-streamers {
+    background: #222;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff6600;
+    width: 90%;
+    max-width: 1000px;
+}
+
+/* Títulos */
+.juegos h2, .sponsors h2, .streamers h2, .tabla-streamers h2 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 1px 1px 3px #000;
+}
+
+/* Contenido de juegos */
+.juegos p {
+    font-weight: bold;
+    color: #ffcc00;
+    text-align: center;
+}
+
+/* Sponsors */
+.sponsors p {
+    margin: 8px 0;
+    font-size: 1.1em;
+    color: #eee;
+}
+
+/* Streamers */
+.streamers p {
+    margin: 6px 0;
+    padding: 8px;
+    border-bottom: 1px solid #444;
+    color: #eee;
+}
+
+.streamers p span {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #222;
+}
+
+th, td {
+    border: 1px solid #444;
+    padding: 12px;
+    text-align: center;
+    color: #eee;
+}
+
+th {
+    background-color: #ff6600;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #333;
+}
+
+tr:hover {
+    background-color: #444;
+    transition: background-color 0.3s;
+}
+

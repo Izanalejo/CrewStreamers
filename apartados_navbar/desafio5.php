@@ -158,7 +158,7 @@ fclose($fp);
         <input type="text" name="nuevo_sponsor" placeholder="Ej: RedDragon">
         <button type="submit">Guardar</button>
         <a href="../data/colaboraciones.csv" download>
-            <button type="button">📥 Descargar Reporte de Colaboraciones</button>
+            <button type="button">📥 Descargar Reporte de Colaboraciones.</button>
         </a>
     </form>
 </body>

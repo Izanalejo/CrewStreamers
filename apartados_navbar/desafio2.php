@@ -1,6 +1,6 @@
 <?php
 require_once '../functions_structure.php';
-myHeader();
+myHeader2();
 myMenu();
 
 // Rutas
@@ -51,13 +51,7 @@ $featured = $streamers[0];
 $resto = array_slice($streamers, 1);
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>🔥 Desafío 2 - Featured Streamers</title>
-  <link rel="stylesheet" href="../css/desafio2.css">
-</head>
+
 <body>
 
   <h1>🔥 DESAFÍO 2 - Featured Streamers</h1>

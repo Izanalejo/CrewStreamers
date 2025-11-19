@@ -1,6 +1,6 @@
 <?php
 require_once '../functions_structure.php';
-myHeader();
+myHeader3();
 myMenu();
 
 function guardarJSON($archivo, $datos)
@@ -208,7 +208,7 @@ if (!empty($roster)) {
                 <p>{$mvp['nombre_real']}</p>
                 <p>👥 {$mvp['followers']} followers</p>
                 <p>🎮 {$mvp['juego_favorito']}</p>
-              </div>";
+            </div>";
     }
 
     $rokkie = rokkie($rosterFusionado);
@@ -220,23 +220,12 @@ if (!empty($roster)) {
                 <p>{$rokkie['nombre_real']}</p>
                 <p>👥 {$rokkie['followers']} followers</p>
                 <p>🎮 {$rokkie['juego_favorito']}</p>
-              </div>";
+            </div>";
     }
 } else {
     echo "<p>No hay roster creado todavía. Pulsa el botón para generarlo.</p>";
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formación de Equipos</title>
-    <link rel="stylesheet" href="../css/gaming-styles.css?v=1">
-
-</head>
 
 <body>
     <form method="post">

@@ -1,6 +1,6 @@
 <?php
 require_once '../functions_structure.php';
-myHeader();
+myHeader5();
 myMenu();
 
 $ubicacionJSON = "../data/roster_completo.json";
@@ -142,15 +142,6 @@ foreach ($streamersConSponsors as $streamer) {
 fclose($fp);
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafío 5</title>
-    <link rel="stylesheet" href="../css/desafio5.css?v=2">
-</head>
 
 <body>
     <form method="post" action="">

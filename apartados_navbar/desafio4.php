@@ -1,6 +1,6 @@
 <?php
 require_once '../functions_structure.php';
-myHeader();
+myHeader4();
 myMenu();
 
 $ubicacionJSON = "../data/roster_completo.json";
@@ -214,22 +214,12 @@ function mostrarRoster($lista)
                 <p>{$nombre_real}</p>
                 <p>Followers: {$followers}</p>
                 <p>🎮 {$juego}</p>
-              </div>";
+            </div>";
     }
     echo "</div>";
     echo "</section>";
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/desafio4.css?=v1">
-    <title>Ejercicio 4</title>
-</head>
 
 <body>
     <h1>DESAFÍO 4 - Rankings y Búsqueda de Legends</h1>

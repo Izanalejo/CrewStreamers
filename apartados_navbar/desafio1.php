@@ -1,6 +1,6 @@
 <?php
 require_once '../functions_structure.php';
-myHeader();
+myHeader1();
 myMenu();
 
 session_start();
@@ -28,14 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteo de Chat</title>
-    <link rel="stylesheet" href="../css/desafio1.css">
-</head>
 <body>
     <div class="container">
         <h1>🎯 Chat Rápido</h1>
